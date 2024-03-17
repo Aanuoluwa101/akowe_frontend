@@ -1,0 +1,24 @@
+/* ConductorsTable.css */
+.conductors-table {
+    border-collapse: collapse;
+    width: 70%;
+    margin: auto;
+  }
+  
+  .conductors-table th, .conductors-table td {
+    border: 1px solid #ddd;
+    padding: 6px;
+    text-align: center;
+    font-size: 12px;
+  }
+  
+  .conductors-table th {
+    background-color: #f2f2f2;
+    font-size: 14px;
+  }
+  
+  .conductors-table td input {
+    width: 18px;
+    height: 18px;
+  }
+  
