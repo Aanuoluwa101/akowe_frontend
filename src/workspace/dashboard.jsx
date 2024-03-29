@@ -10,7 +10,8 @@ const Dashboard = () => {
       </div>
 
       <div className="canvas">
-        
+        <div></div>
+        <div></div>
       </div>
     </section>
   );
