@@ -22,3 +22,7 @@
 .menu:hover {
     color: #faf7f7c0;
 }
+
+.sidebarLogo {
+    font-weight: bold;
+}

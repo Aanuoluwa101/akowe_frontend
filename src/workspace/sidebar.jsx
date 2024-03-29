@@ -1,30 +1,33 @@
 import React from "react";
-import './sidebar.css'
+import "./sidebar.css";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
+  const menuItems = [
+    {
+      name: "Conductors",
+      url: "/dashboard/conductors",
+    },
+    {
+      name: "Give Feedback",
+      url: "/",
+    },
+  ];
+  return (
+    <section className="overallContainer">
+      <div className="sidebarLogo">Akowe</div>
+      <div className="menuItems">
+        {menuItems.map((menu, index) => (
+          <div key={index}>
+          <Link style={{textDecoration: 'none'}} to={menu.url}>
+          <p className="menu">{menu.name}</p>
 
-    const menuItems = [
-        {
-            name: 'Conductors',
-            url: '/'
-        }, 
-        {
-            name: 'Others',
-            url: '/'
-        }, 
-    ]
-    return (
-        <section className="overallContainer">
-        <div className="logo">Akowe</div>
-        <div className="menuItems">
-            {menuItems.map((menu, index) => (
-                <div key={index}>
-                <p className="menu">{menu.name}</p>
-                </div>
-            ))}
-        </div>
-        </section>
-    )
-}
+          </Link>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
-export default SideBar
+export default SideBar;
