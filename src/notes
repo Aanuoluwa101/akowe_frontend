@@ -1,0 +1,32 @@
+this is a test
+
+they will enter their email and first name on the first screen. Like a login screen
+
+after login, they will have the work space. 
+
+on the workspace, we will call an api to get the list of ranks
+the weight in the rank is corresponding to each rank, and it will be part of the payload, but not on the UI. 
+
+We will have an optional part called the enforcement part, where we define what's compulsory for a particular user. 
+
+the calendar will be on the workspace. there will be an api that tells us all the service days of the month, coming from the BE. this will also come with the service days and the respective service types. the button for enforcement will be beside each person's data input row. then a pop up comes up. 
+
+then we will be doing conditional checks for if the enforcement button can be clicked for a particular user. 
+
+there are three types of officiation: preacher, reader, conductor. then 4 for sundays (reader is of 2 types: 1st and 2nd reader). drop down for offiating type will be dependent on the day. if it's weekday, we show 3, if sunday, 4. 
+
+on the popup for enforcement, they have to chose date first, then that's when officiation type will be active and possible to choose (conductor, reader, preacher, etc.), 
+
+service type will be in the background and will determine what we show in officiation. 
+
+there will be restrictions based on the checkbox values for the particular user. 
+
+---- there can be more than one enforcement for a person. after setting one enforcement, they can add more. 
+
+---- in the case where you have made a particular person have the enforcement for a particular activity, you shouldn't be able to give that same activity to another person. it should notify the user. 
+
+
+for now, the restriction is for april 2024. 
+
+-- also, to save, it has to be a minium of 5 rows of officiators. 
+-- they will need to be able to download as pdf. 
