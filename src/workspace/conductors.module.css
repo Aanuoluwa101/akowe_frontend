@@ -11,7 +11,7 @@
     border: 1px solid var(--brand-color);
     width: max-content;
     font-size: 0.9rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     cursor: pointer;
     color: var(--brand-color);
     transition: all 0.3s ease-in-out;
@@ -22,4 +22,90 @@
     border: 1px solid #fff;
     background-color: var(--brand-color);
     color: #fff;
+}
+
+.closeDialog {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    cursor: pointer;
+
+}
+
+.closeDialog:hover {
+opacity: 0.6;
+}
+
+.dialogForm {
+    border: 1px solid blue;
+}
+
+.dialogForm h2 {
+    font-weight: bold;
+}
+
+.persona {
+    display: flex;
+    gap: 1rem;
+    /* width: 100%; */
+    border: 1px solid red;
+}
+
+
+
+.persona input {
+    width: 20rem;
+    /* width: 50%; */
+    height: 2rem;
+    border: 1px solid var(--brand-color);
+    padding: 0 0.5rem;
+    border-radius: 5px;
+}
+
+.persona input:focus {
+    outline: none;
+}
+
+.persona select {
+    width: 20rem;
+    /* width: 50%; */
+
+    height: 2.15rem;
+    border: 1px solid var(--brand-color);
+    padding: 0 0.5rem;
+    border-radius: 5px;
+}
+
+.persona select:focus {
+    outline: none;
+}
+
+.checkboxOverallContainer {
+    margin-top: 1rem;
+}
+
+.dialogTitles {
+    font-weight: bold;
+    color: var(--brand-color);
+}
+
+.customizationToSelect {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 1rem;
+    /* flex-wrap: wrap; */
+    /* width: 100%; */
+
+}
+
+.individualCheckboxContainer {
+    display: flex;
+    /* min-width: 50%; */
+    width: 19rem;
+    border: 1px solid green;
+    /* justify-content: space-between; */
+}
+
+.individualCheckboxContainer label {
+    /* width: 50%; */
 }

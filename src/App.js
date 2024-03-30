@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Home from "./components/Home";
-import ConductorsTable from "./components/ConductorsTable";
+import Home from "./customComponents/Home";
+import ConductorsTable from "./customComponents/ConductorsTable";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Calendar from "./components/Calendar";
+import Calendar from "./customComponents/Calendar";
 import Dashboard from "./workspace/dashboard";
 import Login from "./auth/login";
 import ManageConductors from "./workspace/conductors";

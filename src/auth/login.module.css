@@ -26,13 +26,13 @@
 
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-input {
+.form input {
     width: 20rem;
     height: 2rem;
     border: 1px solid var(--brand-color);
@@ -41,7 +41,7 @@ input {
 
 }
 
-input:focus {
+.form input:focus {
     outline: none;
 }
 
