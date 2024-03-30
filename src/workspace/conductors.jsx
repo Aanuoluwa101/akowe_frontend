@@ -64,7 +64,7 @@ const ManageConductors = () => {
             >
               {/* <DialogTitle>{"Create new officiator"}</DialogTitle> */}
               <DialogContent style={{ position: "relative" }}>
-                <IconX className={styles.closeDialog} />
+                {/* <IconX className={styles.closeDialog} /> */}
                 <section className={styles.dialogForm}>
                   <p className={styles.dialogTitles}>Create new officiator</p>
                   <div className={styles.persona}>
@@ -116,7 +116,12 @@ const ManageConductors = () => {
                     </div>
                   </div>
 
-                  <div className={styles.addEnforcements}></div>
+                  <div className={styles.addEnforcements}>
+                    <p className={styles.enforcementTitle}>Add Enforcements <sub>(optional)</sub></p>
+                    <div>
+                        
+                    </div>
+                  </div>
                 </section>
                 <div></div>
               </DialogContent>
