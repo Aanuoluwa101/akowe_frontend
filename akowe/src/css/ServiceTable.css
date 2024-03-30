@@ -1,0 +1,32 @@
+/* ServiceTable.css */
+.service-table {
+    border-collapse: collapse;
+    width: 70%;
+    margin: auto;
+  }
+  
+  .service-table th, .service-table td {
+    border: 1px solid #ddd;
+    padding: 6px;
+    text-align: center;
+    font-size: 13px; /* Set a smaller font size */
+  }
+  
+  .service-table th {
+    background-color: #f2f2f2;
+    font-size: 14px; /* Set a slightly larger font size for headers */
+  }
+  
+  /* .service-table td div {
+    font-weight: bold;
+  }
+   */
+  
+
+  .bold {
+    font-weight: bold;
+  }
+  
+  .sunday-row {
+    background-color: #f2f2f2;
+  }
