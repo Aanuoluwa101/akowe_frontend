@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import axios from "axios";
+import EnforcementsCalendar from "./calendar";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -117,9 +118,24 @@ const ManageConductors = () => {
                   </div>
 
                   <div className={styles.addEnforcements}>
-                    <p className={styles.enforcementTitle}>Add Enforcements <sub>(optional)</sub></p>
-                    <div>
-                        
+                    <p className={styles.enforcementTitle}>
+                      Add Enforcements <sub>(optional)</sub>
+                    </p>
+                    <div className={styles.enforcementSelection}>
+                      <div>
+                        <EnforcementsCalendar />
+                      </div>
+                      <div>
+                        <div className={styles.enforcementSelectContainer}>
+                          <select>
+                            <option disabled selected value="">
+                              Choose officiation type...
+                            </option>
+
+                            <option></option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </section>
