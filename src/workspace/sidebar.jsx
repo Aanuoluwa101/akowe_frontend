@@ -16,7 +16,13 @@ const SideBar = () => {
 
   return (
     <section className="overallContainer">
-      <Link style={{ textDecoration: "none", color: '#fff' }} to='/' className="sidebarLogo">Akowe</Link>
+      <Link
+        style={{ textDecoration: "none", color: "#fff" }}
+        to="/"
+        className="sidebarLogo"
+      >
+        Akowe
+      </Link>
       <div className="menuItems">
         {menuItems.map((menu, index) => (
           <div key={index}>

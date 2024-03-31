@@ -37,11 +37,11 @@ const ManageConductors = () => {
   };
 
   // get rank data from BE
+  const [listOfRanks, setListOfRanks] = useState()
   useEffect(() => {
     const getAllRanks = async () => {
       try {
-        // const endpointToGetRank = `${process.env.REACT_APP_API_URL}/rankings`
-        const endpointToGetRank = "https://akowe.onrender.com/api/v1/rankings";
+        const endpointToGetRank = `${process.env.REACT_APP_API_URL}/rankings`
         const getRanks = await axios.get(endpointToGetRank);
         console.log("response", getRanks);
       } catch (error) {}

@@ -15,16 +15,13 @@ const Login = () => {
   }, []);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // const userDetails = { name: username, email: email };
-    dispatch(setAuthDetails({name: username, email: email}))
-    // localStorage.setItem("userDetails", JSON.stringify(userDetails));
-
+    dispatch(setAuthDetails({ name: username, email: email }));
     navigate("/dashboard");
   };
   return (
