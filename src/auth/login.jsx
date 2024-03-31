@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./login.module.css";
 import { useNavigate } from "react-router-dom";
 import Intro from "../customComponents/intro";
+import { useDispatch } from "react-redux";
+import { setAuthDetails } from "../redux/authSlice";
 
 const Login = () => {
   useEffect(() => {
@@ -13,13 +15,16 @@ const Login = () => {
   }, []);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const userDetails = { name: username, email: email };
-    localStorage.setItem("userDetails", JSON.stringify(userDetails));
+    // const userDetails = { name: username, email: email };
+    dispatch(setAuthDetails({name: username, email: email}))
+    // localStorage.setItem("userDetails", JSON.stringify(userDetails));
+
     navigate("/dashboard");
   };
   return (

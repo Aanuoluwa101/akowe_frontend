@@ -13,9 +13,10 @@ const SideBar = () => {
       url: "/dashboard/feedback",
     },
   ];
+
   return (
     <section className="overallContainer">
-      <div className="sidebarLogo">Akowe</div>
+      <Link style={{ textDecoration: "none", color: '#fff' }} to='/' className="sidebarLogo">Akowe</Link>
       <div className="menuItems">
         {menuItems.map((menu, index) => (
           <div key={index}>

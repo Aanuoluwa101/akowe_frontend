@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import SideBar from "./sidebar";
 import './dashboard.css'
+import { useSelector } from "react-redux";
 
 const Dashboard = ({children}) => {
-  const userDetails = JSON.parse(localStorage.getItem('userDetails'))
+  const username = useSelector(state => state.auth.name)
 
   return (
     <section className="overallDashboard">
@@ -12,7 +13,7 @@ const Dashboard = ({children}) => {
       </div>
 
       <div className="canvas">
-        <div className="dashboardHeader">Hello, {userDetails ? userDetails.name : 'user'}</div>
+        <div className="dashboardHeader">Hello, {username}</div>
         <div>{children}</div>
       </div>
     </section>
