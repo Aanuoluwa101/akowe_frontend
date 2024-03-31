@@ -15,8 +15,9 @@
     display: flex;
     align-items: center;
     font-size: 10rem;
-    color: #7C001F;
-    color: #af2447;
+    /* color: #7C001F;
+    color: #af2447; */
+    color: #cdecec;
     transition: transform 1s ease-in-out;
 }
 

@@ -7,6 +7,7 @@ import Calendar from "./customComponents/Calendar";
 import Dashboard from "./workspace/dashboard";
 import Login from "./auth/login";
 import ManageConductors from "./workspace/conductors";
+import Feedback from "./workspace/feedback";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/calendar" Component={Calendar}/>
         <Route path="/dashboard" Component={Dashboard}/>
         <Route path="/dashboard/conductors" Component={ManageConductors}/>
+        <Route path="/dashboard/feedback" Component={Feedback}/>
+
       </Routes>
     </Router>
   );

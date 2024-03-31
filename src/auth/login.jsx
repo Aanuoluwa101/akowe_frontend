@@ -1,20 +1,32 @@
-import React, { useState } from "react";
-import styles from './login.module.css'
+import React, { useState, useEffect } from "react";
+import styles from "./login.module.css";
 import { useNavigate } from "react-router-dom";
+import Intro from "../customComponents/intro";
 
 const Login = () => {
-    const navigate = useNavigate()
-    const [username, setUsername] = useState()
-    const [email, setEmail] = useState()
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const introContainer = document.getElementById("showIntro");
+      introContainer.style.display = "none";
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, []);
 
-    const handleLogin = (e) => {
-      e.preventDefault();
-      const userDetails = {name: username, email: email}
-      localStorage.setItem('userDetails', JSON.stringify(userDetails))
-      navigate('/dashboard')
-    }
+  const navigate = useNavigate();
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const userDetails = { name: username, email: email };
+    localStorage.setItem("userDetails", JSON.stringify(userDetails));
+    navigate("/dashboard");
+  };
   return (
     <section className={styles.overallLoginContainer}>
+      <div id="showIntro" className={styles.introContainer}>
+        <Intro />
+      </div>
       <div className={styles.loginContainer}>
         <div className={styles.pageTitle}>
           <p className={styles.logo}>Akowe</p>
@@ -22,9 +34,19 @@ const Login = () => {
         </div>
 
         <form className={styles.form} onSubmit={handleLogin}>
-          <input onChange={(e) => setUsername(e.target.value)} type="text" placeholder="Your name"/>
-          <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email address"/>
-          <button className={styles.submit} onSubmit={handleLogin}>Sign in</button>
+          <input
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            placeholder="Your name"
+          />
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            placeholder="Your email address"
+          />
+          <button className={styles.submit} onSubmit={handleLogin}>
+            Sign in
+          </button>
         </form>
       </div>
     </section>

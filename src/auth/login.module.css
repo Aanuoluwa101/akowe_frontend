@@ -1,8 +1,14 @@
 .overallLoginContainer {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
+}
+
+.introContainer {
+    position: absolute;
+    height: 100vh;
 }
 
 .loginContainer {

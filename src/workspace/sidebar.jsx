@@ -10,7 +10,7 @@ const SideBar = () => {
     },
     {
       name: "Give Feedback",
-      url: "/",
+      url: "/dashboard/feedback",
     },
   ];
   return (
@@ -19,10 +19,9 @@ const SideBar = () => {
       <div className="menuItems">
         {menuItems.map((menu, index) => (
           <div key={index}>
-          <Link style={{textDecoration: 'none'}} to={menu.url}>
-          <p className="menu">{menu.name}</p>
-
-          </Link>
+            <Link style={{ textDecoration: "none" }} to={menu.url}>
+              <p className="menu">{menu.name}</p>
+            </Link>
           </div>
         ))}
       </div>
