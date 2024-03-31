@@ -10,19 +10,25 @@ const SideBar = () => {
     },
     {
       name: "Give Feedback",
-      url: "/",
+      url: "/dashboard/feedback",
     },
   ];
+
   return (
     <section className="overallContainer">
-      <div className="sidebarLogo">Akowe</div>
+      <Link
+        style={{ textDecoration: "none", color: "#fff" }}
+        to="/"
+        className="sidebarLogo"
+      >
+        Akowe
+      </Link>
       <div className="menuItems">
         {menuItems.map((menu, index) => (
           <div key={index}>
-          <Link style={{textDecoration: 'none'}} to={menu.url}>
-          <p className="menu">{menu.name}</p>
-
-          </Link>
+            <Link style={{ textDecoration: "none" }} to={menu.url}>
+              <p className="menu">{menu.name}</p>
+            </Link>
           </div>
         ))}
       </div>

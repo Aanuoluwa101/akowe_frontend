@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import axios from "axios";
+import EnforcementsCalendar from "./calendar";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -36,11 +37,11 @@ const ManageConductors = () => {
   };
 
   // get rank data from BE
+  const [listOfRanks, setListOfRanks] = useState()
   useEffect(() => {
     const getAllRanks = async () => {
       try {
-        // const endpointToGetRank = `${process.env.REACT_APP_API_URL}/rankings`
-        const endpointToGetRank = "https://akowe.onrender.com/api/v1/rankings";
+        const endpointToGetRank = `${process.env.REACT_APP_API_URL}/rankings`
         const getRanks = await axios.get(endpointToGetRank);
         console.log("response", getRanks);
       } catch (error) {}
@@ -117,9 +118,24 @@ const ManageConductors = () => {
                   </div>
 
                   <div className={styles.addEnforcements}>
-                    <p className={styles.enforcementTitle}>Add Enforcements <sub>(optional)</sub></p>
-                    <div>
-                        
+                    <p className={styles.enforcementTitle}>
+                      Add Enforcements <sub>(optional)</sub>
+                    </p>
+                    <div className={styles.enforcementSelection}>
+                      <div>
+                        <EnforcementsCalendar />
+                      </div>
+                      <div>
+                        <div className={styles.enforcementSelectContainer}>
+                          <select>
+                            <option disabled selected value="">
+                              Choose officiation type...
+                            </option>
+
+                            <option></option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </section>
