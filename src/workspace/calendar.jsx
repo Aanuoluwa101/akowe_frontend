@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -49,10 +50,16 @@ function ServerDay(props) {
   );
 }
 
-export default function EnforcementsCalendar() {
+export default function EnforcementsCalendar({sendDateToParent, sendDayToParent}) {
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
+  // const [selectedDate, setSelectedDate] = useState(initialValue)
+  // console.log('selected date', JSON.stringify(selectedDate.$d))
+
+ 
+
+  
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
@@ -91,10 +98,36 @@ export default function EnforcementsCalendar() {
     fetchHighlightedDays(date);
   };
 
+   // date formatting
+   function formatDate(dateString) {
+    const date = new Date(dateString)
+    const day = ("0" + date.getDate()).slice(-2)
+    const month = ("0" + (date.getMonth() + 1)).slice(-2)
+    const year= date.getFullYear()
+    return `${day}-${month}-${year}`
+    // return `${year}-${month}-${day}`
+  }
+
+  function getDayName(dateString) {
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const date = new Date(dateString)
+    const dayIndex = date.getDay()
+    return daysOfWeek[dayIndex]
+  }
+
+  const handleSelectedDate = (date) => {
+    console.log('date inside calendar', date)
+    const formattedDate = formatDate(date.$d)
+    const dayName = getDayName(date.$d)
+    sendDayToParent(dayName)
+    sendDateToParent(formattedDate)
+console.log('confirming date format', formattedDate)
+  }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
-
+      onChange={handleSelectedDate}
         defaultValue={initialValue}
         loading={isLoading}
         onMonthChange={handleMonthChange}
