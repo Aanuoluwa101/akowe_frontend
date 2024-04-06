@@ -15,7 +15,7 @@ const persistConfig = {
   key: "root",
   storage,
   whitelist: [
-    "auth",
+    "auth", "ranks", "officiatorObject", 'notification'
   ],
 };
 
