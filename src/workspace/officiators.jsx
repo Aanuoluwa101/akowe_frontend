@@ -24,7 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const ManageConductors = () => {
+const ManageOfficiators = () => {
   const dispatch = useDispatch();
 
   // state for the dialog box
@@ -332,4 +332,4 @@ const ManageConductors = () => {
   );
 };
 
-export default ManageConductors;
+export default ManageOfficiators;
