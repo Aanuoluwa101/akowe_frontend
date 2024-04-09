@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Calendar from "./customComponents/Calendar";
 import Dashboard from "./workspace/dashboard";
 import Login from "./auth/login";
-import ManageConductors from "./workspace/conductors";
+import ManageOfficiators from "./workspace/officiators";
 import Feedback from "./workspace/feedback";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Route path="/workspace" Component={ConductorsTable} />
         <Route path="/calendar" Component={Calendar}/>
         <Route path="/dashboard" Component={Dashboard}/>
-        <Route path="/dashboard/conductors" Component={ManageConductors}/>
+        <Route path="/dashboard/officiators" Component={ManageOfficiators}/>
         <Route path="/dashboard/feedback" Component={Feedback}/>
 
       </Routes>

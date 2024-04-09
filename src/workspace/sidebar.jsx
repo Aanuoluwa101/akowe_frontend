@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   const menuItems = [
     {
-      name: "Conductors",
-      url: "/dashboard/conductors",
+      name: "Officiators",
+      url: "/dashboard/officiators",
     },
     {
       name: "Give Feedback",
