@@ -142,15 +142,15 @@ const ManageOfficiators = () => {
     }
     console.log('data to send', JSON.stringify(dataToSend))
     try {
-        const endpointToSendDetailsToRoster = `${process.env.REACT_APP_API_URL}/rosters`
+        const endpointToSendDetailsToRoster = `${process.env.REACT_APP_API_URL}/rosters/`
         const responseFromSendingToRoster = await axios.post(endpointToSendDetailsToRoster, dataToSend)
         console.log('confirming response from roster', responseFromSendingToRoster)
-        if (responseFromSendingToRoster.status == 200) {
+        if (responseFromSendingToRoster.status == 201) {
             setLoading(false)
             dispatch(
                 newNotification({
-                  message: "There was an error when saving to Roster. Try again.",
-                  backgroundColor: "failure",
+                  message: "Your roster has been successfully created.",
+                  backgroundColor: "success",
                 })
               );
         }
