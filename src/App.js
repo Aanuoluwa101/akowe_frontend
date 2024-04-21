@@ -15,11 +15,10 @@ function App() {
       <Routes>
         <Route exact path="/" Component={Login} />
         <Route path="/workspace" Component={ConductorsTable} />
-        <Route path="/calendar" Component={Calendar}/>
-        <Route path="/dashboard" Component={Dashboard}/>
-        <Route path="/dashboard/officiators" Component={ManageOfficiators}/>
-        <Route path="/dashboard/feedback" Component={Feedback}/>
-
+        <Route path="/calendar" Component={Calendar} />
+        <Route path="/dashboard" Component={Dashboard} />
+        <Route path="/dashboard/officiators" Component={ManageOfficiators} />
+        <Route path="/dashboard/feedback" Component={Feedback} />
       </Routes>
     </Router>
   );
