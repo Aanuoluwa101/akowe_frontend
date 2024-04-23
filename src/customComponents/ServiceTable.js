@@ -1,5 +1,6 @@
 // ServiceTable.js
 import React from 'react';
+import services from './servicesData';
 import '../css/ServiceTable.css'; 
 
 const ServiceTable = ({ services }) => {
@@ -16,7 +17,7 @@ const ServiceTable = ({ services }) => {
         </tr>
       </thead>
       <tbody>
-        {services.map((service, index) => (
+        {services && services.map((service, index) => (
           <tr key={index} className={service.day === 'Sunday' ? 'sunday-row' : ''}>
             <td>
               <div>{service.day}</div>

@@ -8,13 +8,14 @@ import Dashboard from "./workspace/dashboard";
 import Login from "./auth/login";
 import ManageOfficiators from "./workspace/officiators";
 import Feedback from "./workspace/feedback";
+import ServiceTable from "./customComponents/ServiceTable";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route exact path="/" Component={Login} />
-        <Route path="/workspace" Component={ConductorsTable} />
+        <Route path="/workspace" Component={ServiceTable} />
         <Route path="/calendar" Component={Calendar} />
         <Route path="/dashboard" Component={Dashboard} />
         <Route path="/dashboard/officiators" Component={ManageOfficiators} />

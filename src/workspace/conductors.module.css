@@ -137,8 +137,13 @@
 }
 
 .enforcementTitle {
+  cursor: pointer;
+  font-weight: 600;
+
+}
+
+.enforcementTitle:hover {
   color: var(--brand-color);
-  font-weight: bold;
 }
 
 .enforcementSelection {
@@ -165,8 +170,11 @@
 
 .actionsContainer {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
 .saveToRoster {
+  display: flex;
+  align-items: center;
 }

@@ -33,6 +33,7 @@ const ManageOfficiators = () => {
     setOpen(true);
   };
   const handleDialogClose = () => {
+    setShowEnforcement(false)
     setOpen(false);
     setOfficiatorName('')
     setConductOnWeekday(false)
@@ -85,6 +86,10 @@ const ManageOfficiators = () => {
   const [preachOnSunday, setPreachOnSunday] = useState(false);
   const [enforcementDate, setEnforcementDate] = useState('');
   const [enforcementDay, setEnforcementDay] = useState('');
+  const [showEnforcement, setShowEnforcement] = useState(false)
+  const handleShowEnforcement = () => {
+    setShowEnforcement(!showEnforcement)
+  }
 
   const handleDateFromCalendar = (date) => {
     setEnforcementDate(date);
@@ -104,13 +109,17 @@ const ManageOfficiators = () => {
     can_read_on_sundays: readOnSunday,
     can_preach_on_weekdays: preachOnWeekday,
     can_preach_on_sundays: preachOnSunday,
-    enforcements: [
-      {
-        date: enforcementDate,
-        service_type: enforcementDay == 'Sun' ? 'sunday' : 'weekday',
-        officiation: officiation,
-      },
-    ],
+    enforcements: 
+      showEnforcement ? (
+        [
+          {
+            date: enforcementDate,
+            service_type: enforcementDay == 'Sun' ? 'sunday' : 'weekday',
+            officiation: officiation,
+          },
+        ]
+      ) : null
+    
   };
 
   // use this object to collect multiple officiators and pass them to the redux. it's the one in redux that is then sent with the endpoint below
@@ -156,6 +165,7 @@ const ManageOfficiators = () => {
         }
     } catch (error) {
         console.error('error sending details to roster', error)
+        setLoading(false)
         dispatch(
             newNotification({
               message: "There was an error when saving to Roster. Try again.",
@@ -266,10 +276,11 @@ const ManageOfficiators = () => {
                   </div>
 
                   <div className={styles.addEnforcements}>
-                    <p className={styles.enforcementTitle}>
-                      Add Enforcements <sub>(optional)</sub>
+                    <p className={styles.enforcementTitle} onClick={handleShowEnforcement}>
+                      <span>{showEnforcement ? 'Remove': 'Add'}</span> Enforcements <span style={{color: 'red', fontSize: '0.9rem'}}> (optional)</span>
                     </p>
-                    <div className={styles.enforcementSelection}>
+                    {showEnforcement ? (
+                      <div className={styles.enforcementSelection}>
                       <div>
                         <EnforcementsCalendar
                           sendDateToParent={handleDateFromCalendar}
@@ -309,6 +320,8 @@ const ManageOfficiators = () => {
                         </div>
                       </div>
                     </div>
+                    ) : ""}
+                   
                   </div>
                 </section>
                 <div className={styles.actionsContainer}>
