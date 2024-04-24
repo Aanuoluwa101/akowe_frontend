@@ -1,5 +1,5 @@
 import React from "react";
-import ServiceTable from "./ServiceTable";
+import ServiceTable from "./Roster";
 import services from "./servicesData";
 import Intro from "./intro";
 import "./Home.css";

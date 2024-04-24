@@ -1,6 +1,6 @@
 .overallContainer {
     color: #fff;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     display: flex;
     flex-direction: column;
     gap: 5rem;

@@ -1,9 +1,8 @@
 // ServiceTable.js
 import React from 'react';
-import services from './servicesData';
-import '../css/ServiceTable.css'; 
+import './roster.css'; 
 
-const ServiceTable = ({ services }) => {
+const Roster = ({ services }) => {
   return (
     <section className='tableContainer'>
     <table className="service-table">
@@ -45,4 +44,4 @@ const ServiceTable = ({ services }) => {
   );
 };
 
-export default ServiceTable;
+export default Roster;

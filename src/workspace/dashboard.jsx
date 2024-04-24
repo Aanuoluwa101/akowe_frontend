@@ -13,7 +13,7 @@ const Dashboard = ({children}) => {
       </div>
 
       <div className="canvas">
-        <div className="dashboardHeader">Hello, {username || 'user'}</div>
+        <div className="dashboardHeader"><p>Hello, {username || 'user'}</p></div>
         <div>{children}</div>
       </div>
     </section>
