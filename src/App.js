@@ -8,7 +8,7 @@ import Dashboard from "./workspace/dashboard";
 import Login from "./auth/login";
 import ManageOfficiators from "./workspace/officiators";
 import Feedback from "./workspace/feedback";
-import ServiceTable from "./customComponents/ServiceTable";
+import ServiceTable from "./customComponents/Roster";
 
 function App() {
   return (

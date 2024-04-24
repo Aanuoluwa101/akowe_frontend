@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import Dashboard from "./dashboard";
 import styles from "./feedback.module.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { newNotification } from "../redux/notificationSlice";
 
 const Feedback = () => {
+  const dispatch = useDispatch()
   const usernameFromRedux = useSelector((state) => state.auth.name);
   const emailFromRedux = useSelector((state) => state.auth.email);
   const [message, setMessage] = useState("");
@@ -17,23 +18,38 @@ const Feedback = () => {
     };
     console.log("data to send", dataToSend);
     try {
-      const endpointToSubmitFeedback = `${process.env.REACT_APP_API_URL}/comments`;
+      const endpointToSubmitFeedback = `${process.env.REACT_APP_API_URL}/comments/`;
       const sendUserFeedback = await axios.post(
         endpointToSubmitFeedback,
         dataToSend
       );
+      if (sendUserFeedback.status == 201) {
+        dispatch(
+          newNotification({
+            message: "Thank you for your feedback. It was saved.",
+            backgroundColor: "success",
+          })
+        );
+        document.getElementById('text-area').value = ''
+      }
       console.log("sending response", sendUserFeedback);
     } catch (error) {
-      console.error(error);
+      dispatch(
+        newNotification({
+          message: "There was an error while saving feedback. Try again.",
+          backgroundColor: "failure",
+        })
+      );
+      console.error('error sending feedback',error);
     }
   };
 
   return (
-    <Dashboard>
       <div className={styles.container}>
-        <h3>What do you think about Akowe?</h3>
+        <h3>Give your feedback on Akowe?</h3>
         <div className={styles.inputContainer}>
           <textarea
+          id="text-area"
             onChange={(e) => setMessage(e.target.value)}
             rows="5"
             cols="50"
@@ -44,7 +60,6 @@ const Feedback = () => {
           Send feedback
         </div>
       </div>
-    </Dashboard>
   );
 };
 

@@ -178,3 +178,17 @@
   display: flex;
   align-items: center;
 }
+
+.displayAllOfficiators {
+  margin-top: 5rem;
+}
+
+.rosterHeader {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.feedbackContainer {
+  margin-top: 5rem;
+}
