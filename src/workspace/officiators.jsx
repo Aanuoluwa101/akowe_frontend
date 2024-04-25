@@ -49,17 +49,20 @@ const ManageOfficiators = () => {
   const ranksFromRedux = useSelector((state) => state.ranks.ranks);
 
   useEffect(() => {
-    const getAllRanks = async () => {
-      try {
-        const endpointToGetRank = `${process.env.REACT_APP_API_URL}/rankings`;
-        const getRanks = await axios.get(endpointToGetRank);
-        dispatch(setRanks(getRanks.data));
-      } catch (error) {
-        console.error("error", error);
-      }
-    };
-    getAllRanks();
-  }, [ranksFromRedux !== null]);
+    if (ranksFromRedux !== null) {
+      const getAllRanks = async () => {
+        try {
+          const endpointToGetRank = `${process.env.REACT_APP_API_URL}/rankings`;
+          const getRanks = await axios.get(endpointToGetRank);
+          dispatch(setRanks(getRanks.data));
+        } catch (error) {
+          console.error("error", error);
+        }
+      };
+      getAllRanks();
+    }
+   
+  }, [ranksFromRedux], dispatch);
 
   // state for the select
   const [rank, setRank] = React.useState("");
@@ -112,7 +115,7 @@ const ManageOfficiators = () => {
       ? [
           {
             date: enforcementDate,
-            service_type: enforcementDay == "Sun" ? "sunday" : "weekday",
+            service_type: enforcementDay === "Sun" ? "sunday" : "weekday",
             officiation: officiation,
           },
         ]
@@ -168,7 +171,7 @@ const ManageOfficiators = () => {
         "confirming response from roster",
         responseFromSendingToRoster
       );
-      if (responseFromSendingToRoster.status == 201) {
+      if (responseFromSendingToRoster.status === 201) {
         setLoading(false);
         dispatch(
           newNotification({
@@ -198,9 +201,9 @@ const ManageOfficiators = () => {
   const [rosterData, setRosterData] = useState(null);
 
   // button used in testing to clear redux
-  const handleReduxClear = () => {
-    dispatch(clearOfficiatorObject());
-  };
+  // const handleReduxClear = () => {
+  //   dispatch(clearOfficiatorObject());
+  // };
 
   const downloadPDF = () => {
     const targetElement = document.getElementById('target'); 
@@ -257,7 +260,7 @@ const ManageOfficiators = () => {
                     <div className={styles.personaSelectContainer}>
                       <select onChange={handleRankChange}>
                         <option disabled selected value="">
-                          What&apos;s their rank...
+                          What's their rank...
                         </option>
                         {ranksFromRedux &&
                           ranksFromRedux.map((rank, index) => (
@@ -346,7 +349,7 @@ const ManageOfficiators = () => {
                         </div>
                         <div>
                           <div className={styles.enforcementSelectContainer}>
-                            {enforcementDay == "Sun" ? (
+                            {enforcementDay === "Sun" ? (
                               <select onChange={handleOfficiationChange}>
                                 <option disabled selected value="">
                                   Choose officiation type...
