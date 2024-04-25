@@ -128,7 +128,7 @@ console.log('confirming date format', formattedDate)
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
       onChange={handleSelectedDate}
-        defaultValue={initialValue}
+        // defaultValue={initialValue}
         loading={isLoading}
         onMonthChange={handleMonthChange}
         renderLoading={() => <DayCalendarSkeleton />}

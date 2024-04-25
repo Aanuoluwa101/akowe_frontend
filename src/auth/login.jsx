@@ -6,29 +6,30 @@ import { useDispatch } from "react-redux";
 import { setAuthDetails } from "../redux/authSlice";
 
 const Login = () => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const introContainer = document.getElementById("showIntro");
-      introContainer.style.display = "none";
-    }, 4000);
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     const introContainer = document.getElementById("showIntro");
+  //     introContainer.style.display = "none";
+  //   }, 4000);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [username, setUsername] = useState();
+  const [parish, setParish] = useState()
   const [email, setEmail] = useState();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(setAuthDetails({ name: username, email: email }));
-    navigate("/dashboard");
+    dispatch(setAuthDetails({ name: username, parish: parish, email: email }));
+    navigate("/dashboard/officiators");
   };
   return (
     <section className={styles.overallLoginContainer}>
-      <div id="showIntro" className={styles.introContainer}>
+      {/* <div id="showIntro" className={styles.introContainer}>
         <Intro />
-      </div>
+      </div> */}
       <div className={styles.loginContainer}>
         <div className={styles.pageTitle}>
           <p className={styles.logo}>Akowe</p>
@@ -40,6 +41,11 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
             type="text"
             placeholder="Your name"
+          />
+           <input
+            onChange={(e) => setParish(e.target.value)}
+            type="text"
+            placeholder="Your parish"
           />
           <input
             onChange={(e) => setEmail(e.target.value)}
