@@ -1,6 +1,5 @@
 .overallContainer {
     color: #fff;
-    /* overflow-y: hidden; */
     display: flex;
     flex-direction: column;
     gap: 5rem;
@@ -36,7 +35,4 @@
     height: max-content;
     position: absolute;
     bottom: 0;
-}
-
-.parishContainer p {
 }
