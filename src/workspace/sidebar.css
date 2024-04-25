@@ -5,6 +5,8 @@
     flex-direction: column;
     gap: 5rem;
     padding: 2rem 1rem;
+    position: relative;
+    height: 90%;
 }
 
 .menuItems {
@@ -25,4 +27,16 @@
 
 .sidebarLogo {
     font-weight: bold;
+}
+
+.parishContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: max-content;
+    position: absolute;
+    bottom: 0;
+}
+
+.parishContainer p {
 }

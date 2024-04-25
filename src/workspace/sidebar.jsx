@@ -1,6 +1,8 @@
 import React from "react";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { IconMapPin } from "@tabler/icons-react";
 
 const SideBar = () => {
   const menuItems = [
@@ -8,11 +10,9 @@ const SideBar = () => {
       name: "Officiators",
       url: "/dashboard/officiators",
     },
-    {
-      name: "Give Feedback",
-      url: "/dashboard/feedback",
-    },
   ];
+
+  const parish = useSelector(state => state.auth.parish)
 
   return (
     <section className="overallContainer">
@@ -31,6 +31,9 @@ const SideBar = () => {
             </Link>
           </div>
         ))}
+      </div>
+      <div className="parishContainer">
+       <span><IconMapPin/></span> <p>{parish}</p>
       </div>
     </section>
   );

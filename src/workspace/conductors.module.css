@@ -4,8 +4,7 @@
 }
 
 .createNew,
-.addNew,
-.saveToRoster {
+.addNew {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -20,13 +19,11 @@
   border-radius: 5px;
 }
 
-.addNew,
-.saveToRoster {
+.addNew {
   margin-top: 0;
 }
 
-.addNew p,
-.saveToRoster p {
+.addNew p {
   margin: 0;
   padding: 0;
   display: flex;
@@ -36,6 +33,14 @@
 .saveToRoster {
   background-color: var(--brand-color);
   color: #fff;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--brand-color);
+  width: max-content;
+  font-size: 0.9rem;
+  margin-top: 0;
+  /* cursor: pointer; */
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
 }
 
 .saveToRoster:hover {
@@ -174,11 +179,6 @@
   gap: 1rem;
 }
 
-.saveToRoster {
-  display: flex;
-  align-items: center;
-}
-
 .displayAllOfficiators {
   margin-top: 5rem;
 }
@@ -189,6 +189,16 @@
   align-items: center;
 }
 
+.downloadIcon:hover {
+  color: var(--brand-color);
+  cursor: pointer;
+}
+
 .feedbackContainer {
   margin-top: 5rem;
+}
+
+.scrollContainer {
+  overflow-x: scroll;
+border: 1px solid var(--brand-color);
 }

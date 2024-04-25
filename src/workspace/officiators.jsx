@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Dashboard from "./dashboard";
 import styles from "./conductors.module.css";
 import { IconPlus, IconX, IconDownload } from "@tabler/icons-react";
@@ -14,10 +14,9 @@ import { newNotification } from "../redux/notificationSlice";
 import Loading from "../customComponents/loader";
 import Roster from "../customComponents/Roster";
 import { clearOfficiatorObject } from "../redux/officiatorObjectsSlice";
-import services from "../customComponents/servicesData";
-import { usePDF } from "react-to-pdf";
-import generatePDF from "react-to-pdf";
 import Feedback from "./feedback";
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -26,12 +25,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const ManageOfficiators = () => {
   const dispatch = useDispatch();
-  const targetRef = useRef();
-
-  const downloadOptions = {
-    orientation: "landscape",
-    filename: "page.pdf"
-  };
 
   // state for the dialog box
   const [open, setOpen] = React.useState(false);
@@ -135,6 +128,15 @@ const ManageOfficiators = () => {
     }, 500);
   };
 
+  // checking if a minimum of 5 officiators been entered
+  const [disableSendButton, setDisableSendButton] = useState(true)
+  const countOfOfficiators = useSelector(state => state.officiatorObject.collectOfficiatorObject.length)
+  useEffect(() => {
+    if (countOfOfficiators >= 5) {
+      setDisableSendButton(false)
+    }
+  }, [countOfOfficiators])
+
   // sending officiator data to the BE
   const [loading, setLoading] = useState(false);
   const username = useSelector((state) => state.auth.name);
@@ -200,9 +202,24 @@ const ManageOfficiators = () => {
     dispatch(clearOfficiatorObject());
   };
 
-  //generate pdf
-  // const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
-  
+  const downloadPDF = () => {
+    const targetElement = document.getElementById('target'); 
+    const pdf = new jsPDF('landscape');
+
+    html2canvas(targetElement, {width: 1280, height: 960}).then((canvas) => {
+      const imgData = canvas.toDataURL('img/png')
+      const componentWidth = pdf.internal.pageSize.getWidth()
+      const componentHeight = pdf.internal.pageSize.getHeight()
+      pdf.addImage(imgData, 'PNG', 0, 0, componentWidth, componentHeight)
+      pdf.save('roster.pdf')
+    })
+    dispatch(
+      newNotification({
+        message: "Download complete.",
+        backgroundColor: "success",
+      })
+    );
+  };
 
   return (
     <Dashboard>
@@ -212,9 +229,9 @@ const ManageOfficiators = () => {
           <div onClick={handleDialogOpen} className={styles.createNew}>
             Create new officiator
           </div>
-          <p style={{ cursor: "pointer" }} onClick={handleReduxClear}>
+          {/* <p style={{ cursor: "pointer" }} onClick={handleReduxClear}>
             Clear redux (test)
-          </p>
+          </p> */}
           <div>
             <Dialog
               open={open}
@@ -373,16 +390,18 @@ const ManageOfficiators = () => {
                     <IconPlus />
                     <p>Add new officiator</p>
                   </div>
-                  <div
+                  <button
                     onClick={handleSaveToRoster}
                     className={styles.saveToRoster}
+                    disabled={disableSendButton}
+                    style={{opacity: disableSendButton ? 0.5 : 1, cursor: disableSendButton ? '' : 'pointer'}}
                   >
                     {loading ? (
                       <Loading width={"1rem"} height={"1rem"} />
                     ) : (
-                      <p>Save to Roster</p>
+                      'Save to Roster'
                     )}
-                  </div>
+                  </button>
                 </div>
               </DialogContent>
             </Dialog>
@@ -390,25 +409,31 @@ const ManageOfficiators = () => {
         </div>
 
         <div className={styles.displayAllOfficiators}>
-          {/* {rosterData !== null ? ( */}
+          {rosterData !== null ? (
           <div>
+
+     
             <div className={styles.rosterHeader}>
-              <h3 className={styles.title}>Manage Officiators</h3>
+              <h3 className={styles.title}>Generated roster</h3>
               <IconDownload
-                onClick={() => generatePDF(targetRef, downloadOptions)}
+              className={styles.downloadIcon}
+                onClick={downloadPDF}
               />
             </div>
-            <div ref={targetRef}>
-              <Roster services={services} />
+            <div className={styles.scrollContainer}>
+            <div  id="target" >
+              <Roster   services={rosterData} />
             </div>
+            </div>
+           
             <div className={styles.feedbackContainer}>
             <Feedback/>
             </div>
        
           </div>
-          {/* ) : (
+          ) : (
             ""
-          )} */}
+          )}
           {/* <Roster services={services} /> */}
         </div>
       </div>
