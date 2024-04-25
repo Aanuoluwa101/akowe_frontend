@@ -9,8 +9,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={Login} />
-        <Route path="/dashboard" element={ManageOfficiators} />
+        <Route exact path="/" element={<Login/>} />
+        <Route path="/dashboard" element={<ManageOfficiators/>} />
       </Routes>
     </Router>
   );
