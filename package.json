@@ -56,6 +56,7 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.3",
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.0.4",
+    "@babel/plugin-proposal-private-property-in-object": "^7.18.6"
   }
 }
