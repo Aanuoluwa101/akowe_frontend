@@ -9,8 +9,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" Component={Login} />
-        <Route path="/dashboard" Component={ManageOfficiators} />
+        <Route exact path="/" element={Login} />
+        <Route path="/dashboard" element={ManageOfficiators} />
       </Routes>
     </Router>
   );
