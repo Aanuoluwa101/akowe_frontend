@@ -3,8 +3,8 @@
     background-color: blue;
     color: white;
     border-radius: 50%;
-    width: 20px; /* Adjust width to set the size of the circle */
-    height: 20px; /* Adjust height to set the size of the circle */
+    width: 20px; 
+    height: 20px; 
     display: inline-flex;
     align-items: center;
     justify-content: center;
