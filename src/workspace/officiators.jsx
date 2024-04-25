@@ -15,9 +15,8 @@ import Loading from "../customComponents/loader";
 import Roster from "../customComponents/Roster";
 import { clearOfficiatorObject } from "../redux/officiatorObjectsSlice";
 import Feedback from "./feedback";
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
-
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -49,20 +48,19 @@ const ManageOfficiators = () => {
   const ranksFromRedux = useSelector((state) => state.ranks.ranks);
 
   useEffect(() => {
-    if (ranksFromRedux !== null) {
+    if (ranksFromRedux === null) {
       const getAllRanks = async () => {
         try {
           const endpointToGetRank = `${process.env.REACT_APP_API_URL}/rankings`;
           const getRanks = await axios.get(endpointToGetRank);
           dispatch(setRanks(getRanks.data));
         } catch (error) {
-          console.error("error", error);
+          console.error("error from getting ranks", error);
         }
       };
       getAllRanks();
     }
-   
-  }, [ranksFromRedux], dispatch);
+  }, [ranksFromRedux, dispatch]);
 
   // state for the select
   const [rank, setRank] = React.useState("");
@@ -132,13 +130,15 @@ const ManageOfficiators = () => {
   };
 
   // checking if a minimum of 5 officiators been entered
-  const [disableSendButton, setDisableSendButton] = useState(true)
-  const countOfOfficiators = useSelector(state => state.officiatorObject.collectOfficiatorObject.length)
+  const [disableSendButton, setDisableSendButton] = useState(true);
+  const countOfOfficiators = useSelector(
+    (state) => state.officiatorObject.collectOfficiatorObject.length
+  );
   useEffect(() => {
     if (countOfOfficiators >= 5) {
-      setDisableSendButton(false)
+      setDisableSendButton(false);
     }
-  }, [countOfOfficiators])
+  }, [countOfOfficiators]);
 
   // sending officiator data to the BE
   const [loading, setLoading] = useState(false);
@@ -206,16 +206,16 @@ const ManageOfficiators = () => {
   // };
 
   const downloadPDF = () => {
-    const targetElement = document.getElementById('target'); 
-    const pdf = new jsPDF('landscape');
+    const targetElement = document.getElementById("target");
+    const pdf = new jsPDF("landscape");
 
-    html2canvas(targetElement, {width: 1280, height: 960}).then((canvas) => {
-      const imgData = canvas.toDataURL('img/png')
-      const componentWidth = pdf.internal.pageSize.getWidth()
-      const componentHeight = pdf.internal.pageSize.getHeight()
-      pdf.addImage(imgData, 'PNG', 0, 0, componentWidth, componentHeight)
-      pdf.save('roster.pdf')
-    })
+    html2canvas(targetElement, { width: 1280, height: 960 }).then((canvas) => {
+      const imgData = canvas.toDataURL("img/png");
+      const componentWidth = pdf.internal.pageSize.getWidth();
+      const componentHeight = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
+      pdf.save("roster.pdf");
+    });
     dispatch(
       newNotification({
         message: "Download complete.",
@@ -397,12 +397,15 @@ const ManageOfficiators = () => {
                     onClick={handleSaveToRoster}
                     className={styles.saveToRoster}
                     disabled={disableSendButton}
-                    style={{opacity: disableSendButton ? 0.5 : 1, cursor: disableSendButton ? '' : 'pointer'}}
+                    style={{
+                      opacity: disableSendButton ? 0.5 : 1,
+                      cursor: disableSendButton ? "" : "pointer",
+                    }}
                   >
                     {loading ? (
                       <Loading width={"1rem"} height={"1rem"} />
                     ) : (
-                      'Save to Roster'
+                      "Save to Roster"
                     )}
                   </button>
                 </div>
@@ -412,28 +415,25 @@ const ManageOfficiators = () => {
         </div>
 
         <div className={styles.displayAllOfficiators}>
-          {rosterData !== null ? (
-          <div>
+          {rosterData && rosterData !== null ? (
+            <div>
+              <div className={styles.rosterHeader}>
+                <h3 className={styles.title}>Generated roster</h3>
+                <IconDownload
+                  className={styles.downloadIcon}
+                  onClick={downloadPDF}
+                />
+              </div>
+              <div className={styles.scrollContainer}>
+                <div id="target">
+                  <Roster services={rosterData} />
+                </div>
+              </div>
 
-     
-            <div className={styles.rosterHeader}>
-              <h3 className={styles.title}>Generated roster</h3>
-              <IconDownload
-              className={styles.downloadIcon}
-                onClick={downloadPDF}
-              />
+              <div className={styles.feedbackContainer}>
+                <Feedback />
+              </div>
             </div>
-            <div className={styles.scrollContainer}>
-            <div  id="target" >
-              <Roster   services={rosterData} />
-            </div>
-            </div>
-           
-            <div className={styles.feedbackContainer}>
-            <Feedback/>
-            </div>
-       
-          </div>
           ) : (
             ""
           )}

@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" Component={Login} />
-        <Route path="/dashboard/officiators" Component={ManageOfficiators} />
+        <Route path="/dashboard" Component={ManageOfficiators} />
       </Routes>
     </Router>
   );

@@ -23,7 +23,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(setAuthDetails({ name: username, parish: parish, email: email }));
-    navigate("/dashboard/officiators");
+    navigate("/dashboard");
   };
   return (
     <section className={styles.overallLoginContainer}>
