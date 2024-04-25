@@ -16,11 +16,11 @@ export function Notification() {
   }, [data.message]);
 
   useEffect(() => {
-    if (data.backgroundColor == 'success') {
+    if (data.backgroundColor === 'success') {
       setSeverityColor('#027c39')
-    } else if (data.backgroundColor == 'failure') {
+    } else if (data.backgroundColor === 'failure') {
       setSeverityColor('#901717')
-    } else if (data.backgroundColor == 'warning'){
+    } else if (data.backgroundColor === 'warning'){
       setSeverityColor('#b8591e')
     }
   }, [data.backgroundColor])

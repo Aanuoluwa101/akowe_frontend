@@ -23,7 +23,7 @@ const Feedback = () => {
         endpointToSubmitFeedback,
         dataToSend
       );
-      if (sendUserFeedback.status == 201) {
+      if (sendUserFeedback.status === 201) {
         dispatch(
           newNotification({
             message: "Thank you for your feedback. It was saved.",

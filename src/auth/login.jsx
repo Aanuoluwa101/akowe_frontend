@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./login.module.css";
 import { useNavigate } from "react-router-dom";
-import Intro from "../customComponents/intro";
+// import Intro from "../customComponents/intro";
 import { useDispatch } from "react-redux";
 import { setAuthDetails } from "../redux/authSlice";
 

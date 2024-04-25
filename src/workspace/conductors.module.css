@@ -38,7 +38,6 @@
   width: max-content;
   font-size: 0.9rem;
   margin-top: 0;
-  /* cursor: pointer; */
   transition: all 0.3s ease-in-out;
   border-radius: 5px;
 }
